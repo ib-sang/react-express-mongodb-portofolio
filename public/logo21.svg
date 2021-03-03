@@ -1,0 +1,65 @@
+<svg id="letter_s" data-name="letter s" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="338" height="450" viewBox="0 0 338 450">
+  <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+  <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c142 79.160924, 2017/07/13-01:06:39">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description rdf:about=""/>
+   </rdf:RDF>
+</x:xmpmeta>                          
+<?xpacket end="w"?></metadata>
+<defs>
+    <style>
+      .cls-1, .cls-2 {
+        stroke: #000;
+        stroke-width: 1px;
+        fill-rule: evenodd;
+      }
+
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-3 {
+        font-size: 50px;
+        fill: #64e9fe;
+        font-family: "Times New Roman";
+        font-weight: 700;
+      }
+
+      .cls-4 {
+        fill-opacity: 0.66;
+        opacity: 0.23;
+        fill: url(#radial-gradient);
+        filter: url(#filter);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="156" y1="238" x2="156" y2="68" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a00b2"/>
+      <stop offset="0.5" stop-color="#00a8ff"/>
+      <stop offset="1" stop-color="#84f7fb"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="190" y1="321" x2="190" y2="151" xlink:href="#linear-gradient"/>
+    <radialGradient id="radial-gradient" cx="188" cy="353" r="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-opacity="0.502"/>
+      <stop offset="1.88" stop-color="#fff" stop-opacity="0.502"/>
+    </radialGradient>
+    <filter id="filter" x="111" y="319" width="154" height="68" filterUnits="userSpaceOnUse">
+      <feImage preserveAspectRatio="none" x="111" y="319" width="154" height="68" result="image" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTU0IiBoZWlnaHQ9IjY4IiB2aWV3Qm94PSIwIDAgMTU0IDY4Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBvcGFjaXR5OiAwLjc3OwogICAgICAgIGZpbGw6IHVybCgjbGluZWFyLWdyYWRpZW50KTsKICAgICAgfQogICAgPC9zdHlsZT4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyLWdyYWRpZW50IiB4MT0iNDMiIHgyPSIxMTEiIHkyPSI2OCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuMDEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjk5IiBzdG9wLWNvbG9yPSIjZmZmIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCBjbGFzcz0iY2xzLTEiIHdpZHRoPSIxNTQiIGhlaWdodD0iNjgiLz4KPC9zdmc+Cg=="/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" mode="multiply" in2="SourceGraphic"/>
+      <feGaussianBlur result="blur" stdDeviation="5.916" in="SourceAlpha"/>
+      <feFlood result="flood" flood-opacity="0.18"/>
+      <feComposite result="composite-2" operator="out" in2="blur"/>
+      <feOffset result="offset" dy="46"/>
+      <feComposite result="composite-3" operator="in" in2="SourceAlpha"/>
+      <feBlend result="blend-2" mode="multiply" in2="blend"/>
+    </filter>
+  </defs>
+  <path class="cls-1" d="M234.145,75.432A247.165,247.165,0,0,0,173.088,68C90.749,68,24,106.056,24,153c0,33,32.981,61.6,81.174,75.689a223.71,223.71,0,0,0,25.162,5.765A255.115,255.115,0,0,0,173.088,238c82.339,0,45.027-41.933,45.027-41.933l-34.02,6.8H173.088a133.539,133.539,0,0,1-43.028-6.8c-23.992-8.247-40.021-23.182-40.021-40.237,0-25.975,37.182-47.033,83.049-47.033a132.864,132.864,0,0,1,44.1,7.172c23.4,8.32,24.939,18.895,24.939,18.895s20.012,12.466,38.023,0S286.04,88.73,234.145,75.432Z"/>
+  <path id="Ellipse_1_copy" data-name="Ellipse 1 copy" class="cls-2" d="M111.855,313.568A247.174,247.174,0,0,0,172.912,321C255.251,321,322,282.944,322,236c0-33-32.981-61.6-81.174-75.689a223.71,223.71,0,0,0-25.162-5.765A255.115,255.115,0,0,0,172.912,151c-82.339,0-45.027,41.933-45.027,41.933l34.02-6.8h11.007a133.539,133.539,0,0,1,43.028,6.8c23.992,8.247,40.021,23.182,40.021,40.237,0,25.975-37.182,47.033-83.049,47.033a132.864,132.864,0,0,1-44.1-7.172c-23.395-8.32-24.939-18.9-24.939-18.9s-20.012-12.466-38.023,0S59.96,300.27,111.855,313.568Z"/>
+  <text id="SanSOFTIC" class="cls-3" x="35.227" y="436">SanSOFTIC</text>
+  <ellipse class="cls-4" cx="188" cy="353" rx="77" ry="34"/>
+</svg>

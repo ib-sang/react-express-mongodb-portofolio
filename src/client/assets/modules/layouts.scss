@@ -1,0 +1,41 @@
+// Variables
+// ===================
+
+$padding:40px;
+%container,
+.container{
+    @include container(1260px, $padding);
+}
+
+.active{
+    color: var(--contrast);
+}
+
+%wrap{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title,
+%title{
+    font-weight:700;
+    font-size: rem(32);
+    line-height: 2.4;
+}
+
+%btn{
+    padding: space(1) space(2.5);
+    transition: .5s;
+    cursor:pointer;
+    font-size:rem(16);
+    border-radius: 5px;
+    margin-bottom: space(.5);
+}
+
+.main{
+    margin-top:space(6);
+    margin-bottom: space(4);
+    @extend %container;
+}

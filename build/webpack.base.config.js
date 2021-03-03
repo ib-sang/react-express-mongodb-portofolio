@@ -3,7 +3,25 @@ const path = require('path');
 const outputDirectory = 'dist';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const appEntry = ['babel-polyfill', './src/client/index.js']
+const appEntry = ['babel-polyfill', './src/client/index.js'];
+
+const loaders= [
+    {
+      loader: 'style-loader'
+    },
+    {
+      loader: 'css-loader'
+    },
+    {
+      loader: 'resolve-url-loader'
+    },
+    {
+      loader : 'sass-loader'
+    }, 
+    {
+      loader: 'postcss-loader'
+    }
+  ];
 
 module.exports = {
 
@@ -29,11 +47,16 @@ module.exports = {
             },
             {
                 test: /\.(css|scss)$/i,
-                use: ['style-loader', 'css-loader', 'sass-loader']
+                use: loaders
             },
             {
-                test: /\.(png|woff|woff2|eot|ttf|svg)$/
-            }
+                test: /\.(png|jpe?g|gif|woff|woff2|eot|ttf|svg)$/i,
+                use: [
+                  'file-loader',
+                  { loader: 'image-webpack-loader' },
+                  {loader: 'url-loader',}
+                  ]
+              },
         ]
     },
     resolve: {

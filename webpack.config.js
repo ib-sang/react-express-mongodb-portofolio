@@ -1,9 +1,33 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require("webpack");
 const path = require('path');
 const outputDirectory = 'dist';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const appEntry = ['babel-polyfill', './src/client/index.js'];
+
+const loaders= [
+    {
+      loader: 'style-loader'
+    },
+    {
+      loader: 'css-loader'
+    },
+    {
+      loader: 'resolve-url-loader'
+    },
+    {
+      loader : 'sass-loader'
+    }, 
+    {
+      loader: 'postcss-loader'
+    }
+  ];
 
 module.exports = {
-    entry: ['babel-polyfill', './src/client/index.js'],
+
+    entry: {
+        app: appEntry
+    },
     output: {
         path: path.join(__dirname, outputDirectory),
         filename: 'bundle.js'
@@ -19,7 +43,20 @@ module.exports = {
                         presets: ['@babel/preset-env']
                     }
                 }
-            }
+
+            },
+            {
+                test: /\.(css|scss)$/i,
+                use: loaders
+            },
+            {
+                test: /\.(png|jpe?g|gif|woff|woff2|eot|ttf|svg)$/i,
+                use: [
+                  'file-loader',
+                  { loader: 'image-webpack-loader' },
+                  {loader: 'url-loader',}
+                  ]
+              },
         ]
     },
     resolve: {

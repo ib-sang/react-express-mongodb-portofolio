@@ -1,0 +1,64 @@
+// Variables
+// ===================
+
+:root{
+    --color: #1a191b;
+    --contrast: #d619cd;
+    --gap: 40px;
+    --space: 8px;
+    --font-size:1.2rem;
+    --backgroundColor: #dd80d84f;
+    --colorPrice: #ff4242;
+    --colorDiscount: #9a9ca5;
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #9a9ca5;
+    --gray-dark: #424551;
+    --primary: #17696a;
+    --secondary: #e5e8ed;
+    --success: #03cea4;
+    --info: #5a87fc;
+    --warning: #f89828;
+    --danger: #ff4242;
+    --light: #fff;
+    --dark: #424551;
+}
+
+
+@import "./assets/tools/reset.scss";
+@import "./assets/tools/mixins.scss";
+@import "./assets/tools/function.scss";
+@import "./assets/tools/typography.scss";
+@import './assets/modules/layouts.scss';
+
+// Generic
+// ===================
+
+body{
+    font-family: $font;
+    color: var(--color);
+    font-size: 16px;
+    line-height: 1.4;
+    background: var(--backgroundColor);
+}
+
+svg{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  transition:.5s ease-in-out ;
+  -moz-transition: .5s ease-in-out ;
+  -webkit-transition: .5s ease-in-out;
+}
+
+@import './assets//modules/PrincipalMenuStyle.scss'

@@ -1,0 +1,117 @@
+
+
+.navbar{
+    border: 1px solid salmon;
+    background-color: aliceblue;
+    @extend %container;
+    padding-top: space(1.5);
+    padding-bottom: space(1.5);
+
+    .navbar-brand{
+        @extend %wrap;
+    }
+    .navbar-items{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+        li+li{
+            padding-left: space(5);
+        }
+    }
+    
+    .navbar-toolbar-menubar,
+    .navbar-toolbar-menubar::after,
+    .navbar-toolbar-menubar::before{
+        content: "";
+        display: table;
+        width: 20px;
+        height: 2px; 
+        background-color: currentColor;
+    }
+
+    .navbar-toolbar-menubar{
+        position: relative;
+        top: 9px;
+        padding:0;
+    }
+
+    .navbar-toolbar-menubar::after,
+    .navbar-toolbar-menubar::before{
+        position: absolute;
+        transform-origin: 0 50%;
+    }
+
+    .navbar-toolbar-menubar::after{
+        bottom: -6px; 
+    }
+
+    .navbar-toolbar-menubar::before{
+        top: -6px;
+    }
+
+    .navbar-toolbar-menu{
+        display: none;
+        margin:0 10px;
+        cursor: pointer;
+        height: space(3);
+        padding-top: 1px;
+        padding-left: 3px;
+        padding-right: 5px;
+        transition: .5s;
+    }
+
+    @include down(800px){
+
+        .navbar-menu{
+            display: none;   
+        }
+        .navbar-toolbar-menu{
+            display: initial;
+        }
+        .navbar-items {
+            li+li{
+                padding: 0;
+            }
+        }
+        
+        
+    }
+}
+
+
+.is-active{
+    .navbar-toolbar-menubar{
+        transform: rotate(-180deg);
+        background: transparent;
+    }
+
+    .navbar-toolbar-menubar::after{
+        transform: translateY(2px) translateX(5px)  rotate(-45deg);
+        transform-origin: 0 50%;
+    }
+
+    .navbar-toolbar-menubar::before{
+        transform: rotate(45deg) translateX(3px) translateY(-3px);
+        transform-origin: 0 50%;
+    
+    }
+
+    .navbar-menu{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding-top: space(5);
+        display: flex;
+        width:auto;
+        align-items: flex-start;
+        background-color: aliceblue;
+    }  
+
+    .navbar-items{
+        flex-direction: column;
+        justify-content:flex-start;
+       
+        text-align: start;
+    }
+}
