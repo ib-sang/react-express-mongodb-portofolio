@@ -28,7 +28,6 @@ const App =() => {
                 <Route  exact path='/' render = {() => (
                     <MainLayout>
                         <HomePage/>
-                        <div>un autre</div>
                     </MainLayout>
                 )} />
 

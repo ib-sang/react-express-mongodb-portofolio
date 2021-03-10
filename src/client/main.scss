@@ -2,6 +2,13 @@
 // ===================
 
 :root{
+    --colorPrincipal:#1c090c;
+    --colorSeconde: #f7b6bc;
+    --colorActive: #ef233c;
+    --colorBackground: #dfcccd;
+    --colorTertiaire: #edf2f4;
+    --colorBackgroungForm:#2b2d42;
+
     --color: #1a191b;
     --contrast: #d619cd;
     --gap: 40px;
@@ -45,10 +52,11 @@
 
 body{
     font-family: $font;
-    color: var(--color);
+    color: var(--colorPrincipal);
     font-size: 16px;
     line-height: 1.4;
-    background: var(--backgroundColor);
+    background: var(--colorBackground);
+    
 }
 
 svg{
@@ -61,4 +69,20 @@ svg{
   -webkit-transition: .5s ease-in-out;
 }
 
-@import './assets//modules/PrincipalMenuStyle.scss'
+.img{
+    width: 100%;
+    height: auto;
+}
+
+@import './assets/modules/header.scss';
+@import './assets/modules/PrincipalMenuStyle.scss';
+@import './assets/modules/topbar.scss';
+
+@import './assets/modules/banner.scss';
+@import './assets/modules/progressbar.scss';
+@import './assets/modules/skill.scss';
+@import './assets/modules/sectionform.scss';
+@import './assets/modules/sectionproject.scss';
+
+
+@import './assets/modules/footer.scss';

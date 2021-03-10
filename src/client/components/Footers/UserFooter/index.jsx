@@ -2,9 +2,9 @@ import React from 'react'
 
 const UserFooter = () => {
     return (
-        <div>
-            User Footer
-        </div>
+        <footer className="footer">
+            <div>Copyright (C) site Folio (08-03-2021) / Ib Sangaré. All rights reserved.</div>
+        </footer>
     )
 }
 

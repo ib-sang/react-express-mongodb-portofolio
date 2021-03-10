@@ -1,0 +1,25 @@
+.topbar{
+    @extend %container;
+    @extend %wrap;
+    background-color: var(--colorPrincipal);
+    color: var(--colorTertiaire);
+    font-size: 12px;
+    padding-top: space(.5);
+    padding-bottom: space(.5);
+}
+
+.topbar-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    div+div{
+        padding-left: space(3);
+    }
+}
+
+@media(max-width:460px){
+    .topbar{
+        display: none;
+    }
+
+}

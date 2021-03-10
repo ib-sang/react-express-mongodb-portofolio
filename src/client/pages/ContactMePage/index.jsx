@@ -1,10 +1,11 @@
 import React from 'react'
 
+// components
+import SectionForm from './../../components/SectionForm';
+
 const ContactMePage = () => {
     return (
-        <div>
-            contact me
-        </div>
+        <SectionForm/>
     )
 }
 

@@ -1,0 +1,76 @@
+.skill{
+    @extend %container;
+    background-color: var(--colorPrincipal);
+    color: var(--colorTertiaire);
+    padding-top: space(8);
+    padding-bottom: space(8);
+    display: grid;
+    grid-gap: space(4);
+    grid-template-columns: repeat(2,1fr);
+    margin-bottom: space(20);
+
+}
+
+.skill-title,
+.skill-level-title{
+    @extend %title;
+    margin-bottom: space(4);
+}
+
+.skill-para{
+    margin-bottom: space(2);
+}
+
+.skill-des{
+    font-size: 1.4rem;
+    line-height: 2rem;
+}
+
+.skill-mov{
+    background-color: var(--colorActive);
+    height: 100%;
+    transform: translateY(space(15));
+    padding-left: space(4);
+    padding-right: space(4);
+    display: flex;
+    align-items:center;
+    border-radius: space(.5);
+}
+
+
+
+.skill-wrap{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    
+}
+
+@media(max-width:860px){
+    .skill{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;        
+        overflow: hidden;
+    }
+
+    .skill-level{
+        margin-top: space(4);
+    }
+    
+    .skill-wrap{
+        padding-top: space(3);
+        padding-bottom: space(4);
+        position: sticky;
+    }
+
+    .skill-mov{
+        padding-top: space(2);
+        transform: translateY(space(0));
+        display: block;
+        
+    }
+
+}

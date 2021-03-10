@@ -1,14 +1,18 @@
-
-
 .navbar{
-    border: 1px solid salmon;
-    background-color: aliceblue;
+    background-color: #fff;
     @extend %container;
-    padding-top: space(1.5);
-    padding-bottom: space(1.5);
-
     .navbar-brand{
         @extend %wrap;
+        .logo{
+            width: space(9);
+            height: space(9);
+        }
+    }
+    .navbar-langue-items{
+        @extend %wrap;
+        li+li {
+            padding-left: space(1);
+        }
     }
     .navbar-items{
         display: flex;
@@ -16,7 +20,7 @@
         justify-content: space-between;
         align-items: center;
         li+li{
-            padding-left: space(5);
+            padding-left: space(2);
         }
     }
     
@@ -51,8 +55,10 @@
     }
 
     .navbar-toolbar-menu{
+        position: relative;
+        top: 0px;
+        right: 0px;
         display: none;
-        margin:0 10px;
         cursor: pointer;
         height: space(3);
         padding-top: 1px;
@@ -101,17 +107,24 @@
         position: absolute;
         top: 0;
         right: 0;
+        left: 0;
         padding-top: space(5);
         display: flex;
         width:auto;
         align-items: flex-start;
-        background-color: aliceblue;
+        background-color: #fff;
+        padding-top: space(4);
+        padding-bottom: space(4);
+        @extend %container;
     }  
 
     .navbar-items{
         flex-direction: column;
-        justify-content:flex-start;
-       
+        align-items: stretch;
+    }
+
+    .navbar-item{
         text-align: start;
+        margin-top: space(2);
     }
 }
