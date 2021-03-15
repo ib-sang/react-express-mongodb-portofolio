@@ -9,7 +9,7 @@ const Topbar = () => {
             </div>
             <div className="topbar-item topbar-wrap">
                 <div>
-                    <Icon name="money-bag"/> sibrahima250@gmail.com
+                    <Icon name="envelop"/> sibrahima250@gmail.com
                 </div>
                 <div>
                     <Icon name="phone"/> +223 91 92 32 37
