@@ -68,7 +68,7 @@ router.get('/', (req, res, next) =>{
     })
 })
 
-// Login
+// Sign in
 router.get('/login', (req, res, next) => {
 
     if(req.user !== null){
@@ -125,7 +125,7 @@ router.get('/login', (req, res, next) => {
 });
 
 // Sign up
-router.post('/registration',  upload.single('imageUser'), (req, res, next) =>{
+router.post('/signup',  upload.single('imageUser'), (req, res, next) =>{
 
     if(!req.body.username){
         req.body.username = req.body.email
@@ -195,7 +195,17 @@ router.post('/registration',  upload.single('imageUser'), (req, res, next) =>{
 
 // Logout
 router.post('/logout', (req, res, next) =>{
-    
+
+    User.findOne({email: user.email})
+    .exec()
+    .then()
+    .catch(err =>{
+        console.log(err)
+        res.status(500).json({
+            error: err
+        })
+    })
+
 })
 
 

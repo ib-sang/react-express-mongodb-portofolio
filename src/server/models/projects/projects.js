@@ -11,6 +11,11 @@ const projectsSchema = Schema({
         trim: true,
         default:''
     },
+    slug:{
+        tyep: String,
+        trim: true,
+        require: true
+    },
     description: {
         type: String,
         trim: true,
@@ -19,6 +24,11 @@ const projectsSchema = Schema({
     image: {
         type: String,
         trim: true,
+        require: true
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category_projects',
         require: true
     }
 
