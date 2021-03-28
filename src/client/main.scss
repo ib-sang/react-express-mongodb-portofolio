@@ -8,6 +8,7 @@
     --colorBackground: #dfcccd;
     --colorTertiaire: #edf2f4;
     --colorBackgroungForm:#2b2d42;
+    --colorLoginUser: #8d99ae;
 
     --color: #1a191b;
     --contrast: #d619cd;
@@ -74,6 +75,8 @@ svg{
     height: auto;
 }
 
+@import './assets/modules/form.scss';
+
 @import './assets/modules/header.scss';
 @import './assets/modules/PrincipalMenuStyle.scss';
 @import './assets/modules/topbar.scss';
@@ -86,3 +89,5 @@ svg{
 
 
 @import './assets/modules/footer.scss';
+
+@import './assets//modules//adminSign.scss';

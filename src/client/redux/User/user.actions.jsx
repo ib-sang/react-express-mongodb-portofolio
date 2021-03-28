@@ -11,3 +11,7 @@ export const signInSuccess = user =>({
     type: UserTypes.SIGN_IN_SUCCESS,
     payload: user
 })
+
+export const checkUserSession = () =>({
+    type: UserTypes.CHECK_USER_SESSION
+})

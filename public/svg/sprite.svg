@@ -23,6 +23,14 @@
     </symbol>
 
 
+    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 483.3 483.3" id="lock" fill="currentColor">
+      <circle cx="256" cy="321" r="25"/>
+      <path d="M399 196v-53C399 64.15 334.85 0 256 0S113 64.15 113 143v53H66v126c0 104.77 85.23 190 190 190s190-85.23 190-190V196zM271 373.9v46.77h-30V373.9c-23.06-6.54-40-27.77-40-52.9 0-30.33 24.67-55 55-55s55 24.67 55 55c0 25.13-16.94 46.36-40 52.9zM369 196H143v-53c0-62.31 50.69-113 113-113s113 50.69 113 113z"/>
+    </symbol>
+
+
+
+
 <symbol viewBox="0 0 74 74" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="logo" fill="currentColor" width="338" height="450">
   <defs>
     <linearGradient id="a" x1="156" y1="238" x2="156" y2="68" gradientUnits="userSpaceOnUse">

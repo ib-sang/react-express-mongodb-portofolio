@@ -1,11 +1,11 @@
 const config = {
     portfolio: {
-        // FusionAuth URL: http://localhost:9011
-        BASEURL: "http://localhost:3000",
+        // IBfolio URL: http://localhost:3000
+        baseURL: "http://localhost:9000",
     },
     apiServer:{
-        // API Server URL: http://localhost:9001
-        BASEURL: "http://localhost:3011/"
+        // API Server URL: http://localhost:9000
+        baseURL: "http://localhost:9000/"
     },
 }
 

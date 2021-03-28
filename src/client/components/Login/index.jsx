@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { emailSignInStart } from './../../redux/User/user.actions';
+
+
 import Icon from './../Icon';
 
 // Components
@@ -8,28 +12,31 @@ import FormInput from './../Form/FormInput';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+
+    const handleSubmit = e =>{
+        e.preventDefault();
+        dispatch(emailSignInStart({email, password}))
+        
+    }
 
     return (
-        <form className="form-login">
+        <form className="form-login" onSubmit={ handleSubmit }>
             <FormInput
                     type = 'eamil'
-                    placeholder = 'Email'
                     value = {email}
                     name= 'email'
-                    label = 'Adress email'
                     onChange = {e => setEmail(e.target.value)}
             >
                 <Icon name="user"/>
             </FormInput>
             <FormInput
                     type = 'password'
-                    placeholder = 'password'
                     value = {password}
                     name= 'password'
-                    label = 'Password'
                     onChange = {e => setPassword(e.target.value)}
             >
-                <Icon name="password"/>
+                <Icon name="lock"/>
             </FormInput>
             <div className="form-group">
                 <FormButton>Sign in</FormButton>

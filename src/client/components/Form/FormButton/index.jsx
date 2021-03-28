@@ -2,7 +2,7 @@ import React from 'react'
 
 const FormButton = ({children, ...otherProps}) => {
     return (
-        <button className='' {...otherProps}>
+        <button className='form-btn' {...otherProps}>
             {children}
         </button>
     )

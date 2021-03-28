@@ -6,7 +6,7 @@
 */
 
 // Routes
-const accountRouters = require('./../routers/accounts'); 
+const authRouters = require('./../routers/auth'); 
 
 /**
  * Route Handler
@@ -19,7 +19,7 @@ const accountRouters = require('./../routers/accounts');
 const routes = app =>{
    
     // routes account
-    app.use('/api/users', accountRouters);
+    app.use('/api/auth', authRouters);
 
 } 
 

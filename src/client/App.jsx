@@ -11,12 +11,14 @@ import HomePage from './pages/HomePage';
 import ServicePage from './pages/ServicePage';
 import DashboardPage from './pages/DashboardPage';
 import ManagementPage from './pages/ManagementPage';
-import DashbordPage from './pages/admin/DashbordPage'
+import DashbordPage from './pages/admin/DashbordPage';
+import SignInPage from './pages/admin/SignInPage';
 
 // Laouts
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import GestLayout from './layouts/GestLayout';
+import AdminSignLayout from './layouts/AdminSignLayout';
 
 // Auth
 import WithAdminAuth from "./hoc/WithAdminAuth";
@@ -66,9 +68,9 @@ const App =() => {
             />
 
             <Route path='/signin' render = { () => (
-                <MainLayout>
-                    <ContactMePage/>
-                </MainLayout>
+                <AdminSignLayout>
+                    <SignInPage/>
+                </AdminSignLayout>
             )}/>
 
             <Route exact path = '/ibfolio-sansoftic'

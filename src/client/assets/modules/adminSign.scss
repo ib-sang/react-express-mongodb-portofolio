@@ -1,0 +1,42 @@
+.mainSign{
+    background: linear-gradient( #0006, #0004), center top/cover no-repeat url('./../img/back.jpg');
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-admin{
+    opacity: .9;
+    width: 350px;
+    @include down(380){
+        width: 100%;
+    }
+}
+
+.form-login{
+    background: var(--colorBackgroungForm);
+    padding-top: space(8);
+    padding-bottom: space(4);
+    padding-left: space(2);
+    padding-right: space(2);
+    border-radius: space(1);
+}
+
+.user-signin{
+    border-radius: 50%;
+    background: var(--colorLoginUser);
+    width: 25vh;
+    height: 25vh;
+    transform: translateY(60px);
+    margin: auto;
+    overflow: hidden;
+    @include down(380){
+        display: none;
+    }
+}
+
+.user-signin-img{
+    width: 20vh;
+    transform: translateY(30px) translateX(25px);
+}

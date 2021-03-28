@@ -1,0 +1,60 @@
+
+.form-field-style{
+    color: var(--colorActive);
+    border-bottom: 1px solid var(--colorTertiaire);
+    transition: .3s;
+}
+
+.form-field-style:hover,
+.form-field:focus{
+    opacity: .8;
+    background-color: var(--colorTertiaire);
+    border-radius: space(.5);
+}
+
+.form-field-style:hover .form-field{
+    opacity: .8;
+    background-color: var(--colorTertiaire);
+    border-radius: space(.5);
+}
+
+.form-field{
+    @extend %formInput;
+    background-color: transparent;
+    width: calc(100% - 20px);
+    font-size: rem(14);
+    color: var(--colorPrincipal);
+    transition: .3s;
+}
+.form-field-style:focus-within{
+    opacity: .8;
+    background-color: var(--colorTertiaire);
+    border-radius: space(.5);
+}
+
+.form-btn{
+    background: var(--colorActive);
+    color: var(--colorTertiaire);
+    @extend %formInput;
+    width: 100%;
+    font-size: rem(18);
+    line-height: 1.8;
+    border-radius: space(.8);
+    opacity: .8;
+    transition: opacity .5s;
+    cursor: pointer;
+}
+
+.form-btn:hover{
+    opacity: 1;
+}
+
+.form-link-forgot{
+    color: var(--colorActive);
+    opacity: .8;
+    transition: opacity .5s;
+}
+
+.form-link-forgot:hover{
+    opacity: 1;
+}

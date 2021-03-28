@@ -6,8 +6,9 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
-const c = require('./../../config/constants');
-
+const {auth, guest} =require('./../../middlewares/auth');
+const c = require('../../config/constants');
+const {logIn, logOut} = require('./../../auth')
 
 
 const storage = multer.diskStorage({
@@ -36,8 +37,7 @@ const upload = multer({storage:storage,
 });
 
 // models
-const User = require('./../../models/users');
-
+const User = require('../../models/users');
 
 // All users
 router.get('/', (req, res, next) =>{
@@ -55,7 +55,7 @@ router.get('/', (req, res, next) =>{
                     email: doc.email,
                     request: {
                         type: 'GET',
-                        url: 'localhost:9001/api/users/'+doc._id
+                        url: 'localhost:9000/api/auth/'+doc._id
                     }
                 }
             })
@@ -69,50 +69,24 @@ router.get('/', (req, res, next) =>{
 })
 
 // Sign in
-router.get('/login', (req, res, next) => {
+router.post('/signin', (req, res, next) => {
 
-    if(req.user !== null){
-        return res.redirect('/');
-    }
+    const {email, password} = req.body;
 
-    User.findOne({email: req.body.email})
+    User.findOne({email: email})
     .exec()
     .then(user => {
         console.log(user)
-        if(user.length > 1){
-            return res.status(401).json({
-                message: 'Auth failed'
-            })
+        if(!user || user.matchesPassword((password))){
+            return res.status(401).json({ isAuth : false,message : "Incorrect email or password"})
         }
-        bcrypt.compare(req.body.password, user.password, (err, result) =>{
-
-            if(err){
-                return res.status(401).json({
-                    message: 'Auth failed'
-                })
-            }
-            if(result){
-                const token  = jwt.sign({
-                    email: user.email,
-                    userID: user._id,
-                    
-                },
-                process.env.JWT_KEY,
-                process.env.JWT_KEY,
-                {
-                    expiresIn: '1h'
-                }
-                )
-                return res.status(200).json({
-                    message: 'Auth successful',
-                    token: token
-                })
-                
-            }
-            res.status(401).json({
-                message: "Auth failed"
-            })
+        logIn(req, user._id)
+        res.status(200).json({
+            isAuth : true,
+            id : user._id,
+            email : user.email
         })
+
     })
     .catch(err =>{
         console.log(err)
@@ -125,19 +99,14 @@ router.get('/login', (req, res, next) => {
 });
 
 // Sign up
-router.post('/signup',  upload.single('imageUser'), (req, res, next) =>{
-
-    if(!req.body.username){
-        req.body.username = req.body.email
-    }
+router.post('/signup', (req, res, next) =>{ 
 
     User.findOne({email: req.body.email})
     .exec()
     .then(user =>{
-        if(user.length>1){
-            return res.status(409).json({
-                message: 'Mail exits!'
-            })
+        console.log(user)
+        if(user){
+            return res.status(409).json({auth : false, message :"email exits"})
         }else{
             bcrypt.hash(req.body.password, 10, (err, hash) =>{
 
@@ -151,30 +120,23 @@ router.post('/signup',  upload.single('imageUser'), (req, res, next) =>{
                 }else{
                     const user = new User({
                         _id: new mongoose.Types.ObjectId(),
-                        fullName: req.body.name,
                         email: req.body.email,
-                        username: req.body.username,
-                        password: req.body.password,
-                        imageUser: req.file.path,
-                        roles: [c.ROLE_USER],
-                
+                        password: hash,
                     });
 
                     user.save()
                     .then(result =>{
                         console.log(result)
+                        const id = result._id
+                        logIn(req, id)
                         res.status(201).json({
                             message: "Createc user successfull",
                             createdUser: {
-                                _id: result._id,
-                                fullName: result.fullName,
+                                _id: id,
                                 email: result.email,
-                                username: result.username,
-                                password: result.password,
-                                imageUser: result.imageUser,
                                 request:{
                                     type: 'GET',
-                                    url: 'localhost:9001/api/users/'+result._id
+                                    url: 'localhost:9000/api/auth/'+id
                                 }
                             }
                         })
@@ -193,18 +155,47 @@ router.post('/signup',  upload.single('imageUser'), (req, res, next) =>{
 
 });
 
-// Logout
-router.post('/logout', (req, res, next) =>{
+// Current User
+router.get('/:userID', (req, res, next) =>{
+    // user dont token != 1
+    const id = req.params.userID
 
-    User.findOne({email: user.email})
+    User.findById(id)
     .exec()
-    .then()
+    .then(user =>{
+        console.log(user)
+        if(user){
+            res.status(201).json({
+                user: {
+                    id: id,
+                    email: user.email
+                },
+                request:{
+                    type: 'GET',
+                    description: 'getting all users',
+                    url: 'http://localhost:9000/api/auth'
+                }
+            })
+        }else{
+            res.status(404).json({
+                message: "No valid entry found for provided ID"
+            })
+        }
+    })
     .catch(err =>{
         console.log(err)
         res.status(500).json({
             error: err
         })
     })
+
+})
+
+//logout user
+router.post('/logout', auth, (req, res, next) =>{
+
+    logOut(req, res)
+    res.status(200).json({ message: 'OK' })
 
 })
 

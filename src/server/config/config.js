@@ -16,6 +16,11 @@ if (result.error) {
   throw result.error
 }
 
+const { SessionOptions } = require('express-session')
+const sessionName = process.env.SESSION_NAME
+const sessionSecret = process.env.SESSION_SECRET
+const sessionTimeOut = process.env.SESSION_IDLE_TIMEOUT
+
 const config = {
 
     // Environment name
@@ -38,6 +43,7 @@ const config = {
         // React APP URL: http://localhost:3000
         baseURL: process.env.FRONTEND_BASEURL
     },
+    secret: process.env.JWT_KEY,
     authKeys: {
 
         google: {
@@ -57,7 +63,26 @@ const config = {
           clientSecret: null
         }
     
-      },
+    },
+    auth:{
+      
+    },
+    session:{
+      session_name: sessionName,
+      session_secret: sessionSecret,
+      session_id_timeout: sessionTimeOut,
+      SessionOptions: {
+        secret: sessionSecret,
+        name: sessionName,
+        cookie: {
+          maxAge: +sessionTimeOut,
+          sameSite: true
+        },
+        rolling: true,
+        resave: false,
+        saveUninitialized: false
+      } 
+    },
     data: {
     
     }

@@ -7,6 +7,11 @@ $padding:40px;
     @include container(1260px, $padding);
 }
 
+%formInput{
+    outline: none;
+    border: none;
+}
+
 .active{
     color: var(--colorActive);
 }

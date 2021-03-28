@@ -7,9 +7,9 @@ const FormInput = ({onChange, label, children, ...otherProps}) => {
                 <label htmlFor={label} className='form-controle'> {label} </label>
             )}
 
-            <div className=''>
+            <div className='form-field-style'>
                 {children && (children)}
-                <input id= { label } onChange= { onChange } {...otherProps} className='form-input'/>
+                <input id= { label } onChange= { onChange } {...otherProps} className='form-field'/>
             </div>
         </div>
     )

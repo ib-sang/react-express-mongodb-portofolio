@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Icon = ({name}) =>{
-    const link = '/sprite.svg#' + name
+    const link = '/svg/sprite.svg#' + name
     return <svg className="icon">
             <use href={link} />
         </svg>
