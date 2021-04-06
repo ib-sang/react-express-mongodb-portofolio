@@ -1,12 +1,12 @@
 import React from 'react';
 
 //Menus
-import PricipalMenu from './../../Menus/PrincipalMenu';
+import AdminMenu from './../../Menus/AdminMenu';
 
 const AdminHeader = () => {
     return (
         <header className='header'>
-            <PricipalMenu/>
+            <AdminMenu/>
         </header>
     )
 }

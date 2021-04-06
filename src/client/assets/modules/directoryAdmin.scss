@@ -1,0 +1,10 @@
+.directory-main{
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    grid-gap: space(3);
+    @extend %container;
+    margin-top: space(3);
+    @include down(780){
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,6 +1,6 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
 import userTypes from './user.types';
-import { signInSuccess } from './user.actions'
+import { signInSuccess, signOutUserSuccess } from './user.actions'
 import auth from './../../api/auth';
 import user from './../../api/users';
 
@@ -49,9 +49,51 @@ export function* onCheckUserSession(){
     yield takeLatest(userTypes.CHECK_USER_SESSION, isUserAuthenticated)
 }
 
+export function* signOutUser(){
+    try {
+        yield auth.signOut()
+        yield put(
+            signOutUserSuccess()
+        )
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export function* onSignOutUserStart(){
+    yield takeLatest(userTypes.SIGN_OUT_USER_START, signOutUser)
+}
+
+export function* signUpUser({payload:{
+    displayName,
+    email,
+    password,
+    confirmPassword
+}}){
+    if(password !== confirmPassword){
+        const error = ["Password don't match"];
+        yield put()
+        return
+    }
+    try {
+        
+        const user = yield auth.createUserWithEmailAndPassword(email, password)
+        const additionalData = { displayName }
+        yield getSnapshotFromUserAuth(user, additionalData)
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export function* onSignUpUserStart(){
+    yield takeLatest(userTypes.SIGN_UP_USER_START, signUpUser)
+}
+
 export default function* userSaga(){
     yield all([
         call(onEmailSingInStart),
-        call(onCheckUserSession)
+        call(onCheckUserSession),
+        call(onSignOutUserStart)
     ])
 }

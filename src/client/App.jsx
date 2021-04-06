@@ -9,9 +9,9 @@ import AbouteMePage from './pages/AboutMePage';
 import ContactMePage from './pages/ContactMePage';
 import HomePage from './pages/HomePage';
 import ServicePage from './pages/ServicePage';
-import DashboardPage from './pages/DashboardPage';
 import ManagementPage from './pages/ManagementPage';
-import DashbordPage from './pages/admin/DashbordPage';
+// Admin pages
+import DashboardPage from './pages/admin/DashboardPage';
 import SignInPage from './pages/admin/SignInPage';
 
 // Laouts
@@ -53,7 +53,7 @@ const App =() => {
                 </MainLayout>
             )}/>
 
-            <Route path = '/dashbord' render = { () => (
+            <Route path = '/dashboard' render = { () => (
                 <AdminLayout>
                     <DashboardPage/>
                 </AdminLayout>
