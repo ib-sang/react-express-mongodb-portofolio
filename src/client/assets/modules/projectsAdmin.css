@@ -1,0 +1,28 @@
+.cart-add {
+  margin-bottom: space(2);
+  border: 1px solid var(--colorActive);
+  text-align: center;
+  border-radius: space(1);
+  color: var(--colorActive);
+}
+
+.cart-add a {
+  display: block;
+  padding-top: space(2);
+  padding-bottom: space(2);
+  -webkit-transition: cubic-bezier(0.55, 0.085, 0.68, 0.53) 0.5s;
+  transition: cubic-bezier(0.55, 0.085, 0.68, 0.53) 0.5s;
+}
+
+.cart-add svg {
+  height: 30px;
+  padding-top: 6px;
+  -webkit-transition: cubic-bezier(0.55, 0.085, 0.68, 0.53) 0.5s;
+  transition: cubic-bezier(0.55, 0.085, 0.68, 0.53) 0.5s;
+}
+
+.cart-add a:hover {
+  background: var(--colorActive);
+  color: #fff;
+}
+/*# sourceMappingURL=projectsAdmin.css.map */

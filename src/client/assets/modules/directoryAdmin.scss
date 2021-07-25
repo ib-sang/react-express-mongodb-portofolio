@@ -4,7 +4,7 @@
     grid-gap: space(3);
     @extend %container;
     margin-top: space(3);
-    @include down(780){
+    @include down(920){
         grid-template-columns: 1fr;
     }
 }

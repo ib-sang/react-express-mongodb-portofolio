@@ -4,14 +4,21 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 
+const path = './public/uploads/projects/'
+
+const generateFormat = (file)=>{
+    console.log(file.originalname)
+    return new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname
+}
+
 const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
-        cb(null, './uploads/');
+        cb(null, path);
     },
     filename: function(req, file, cb){
-        cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname);
+        cb(null, generateFormat(file));
     }
 })
 
@@ -32,7 +39,7 @@ const upload = multer({storage:storage,
 });
 
 const Project = require('./../../models/projects');
-const Category = require('./../../models/category_projects');
+const Category = require('../../models/categories');
 
 router.get('/', (req, res,next) =>{
 
@@ -46,7 +53,8 @@ router.get('/', (req, res,next) =>{
                 return {
                     title: doc.title,
                     description: doc.description,
-                    imageProject: doc.imageProject,
+                    image: doc.image,
+                    id: doc._id,
                     request: {
                         type: 'GET',
                         url: 'http://localhost:9000/api/projects/'+doc._id 
@@ -72,24 +80,25 @@ router.get('/', (req, res,next) =>{
 });
 
 // Created Project
-router.post('/', upload.single('imageUser'), (req, res, next) =>{
-
+router.post('/', upload.single('image'), (req, res, next) =>{
+ 
     const title = req.body.title;
 
     Category.findById(req.body.category)
     .exec()
     .then(category =>{
+        console.log(category)
         if(!category){
             return res.status(404).json({
                 message: 'Category not found'
-            })
+            }) 
         }
         const project = new Project({
             _id: mongoose.Types.ObjectId(),
             title: title,
-            slug: slug(title),
             description: req.body.description,
-            imageProject: req.file.path
+            image: req.file.path,
+            category: category
         });
         
         return project.save();
@@ -102,7 +111,7 @@ router.post('/', upload.single('imageUser'), (req, res, next) =>{
                 title: result.title,
                 slug: result.slug,
                 description: result.description,
-                imageProject: result.imageProject,
+                image: result.image,
                 request: {
                     type: 'GET',
                     url: 'http://localhost:9000/api/projects/' + result._id
@@ -134,7 +143,7 @@ router.get('/:projectID', (req, res, next) =>{
                     title: result.title,
                     slug: result.slug,
                     description: result.description,
-                    imageProject: resuult.imageProject
+                    image: result.image
                 },
                 request:{
                     type: 'GET',
@@ -199,7 +208,7 @@ router.delete('/:projectID', (res, req, next) =>{
             request : {
                 type: 'POST',
                 url: 'http://localhost:9000/api/projects',
-                data: {title: 'String', description: 'String', imageProject: 'File'}
+                data: {title: 'String', description: 'String', image: 'File'}
             }
         })
     })

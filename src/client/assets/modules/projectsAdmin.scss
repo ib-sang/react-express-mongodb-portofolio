@@ -1,12 +1,27 @@
 .project-admin{
-    border-radius: space(1);
-    background: var(--colorTertiaire);
 }
 
 .cart-add{
-    padding-top: space(2);
-    padding-bottom: space(2);
+    margin-bottom: space(2);
     border: 1px solid var(--colorActive);
-    margin-top: space(2);
     text-align: center;
+    border-radius: space(1);
+    color: var(--colorActive);
+    a{
+        display: block;
+        padding-top: space(2);
+        padding-bottom: space(2);
+        transition: cubic-bezier(0.55, 0.085, 0.68, 0.53) .5s;
+    }
+
+    svg{
+        height: 30px;
+        padding-top: 6px;
+        transition: cubic-bezier(0.55, 0.085, 0.68, 0.53) .5s;
+    }
+
+    a:hover{
+        background: var(--colorActive);
+        color:#fff;
+    }
 }

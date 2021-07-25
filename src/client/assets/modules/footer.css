@@ -1,0 +1,9 @@
+.footer {
+  background-color: var(--colorPrincipal);
+  color: var(--colorTertiaire);
+  font-size: .7rem;
+  padding-top: space(0.4);
+  padding-bottom: space(0.4);
+  text-align: center;
+}
+/*# sourceMappingURL=footer.css.map */

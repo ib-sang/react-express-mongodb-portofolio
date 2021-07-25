@@ -13,6 +13,9 @@ import ManagementPage from './pages/ManagementPage';
 // Admin pages
 import DashboardPage from './pages/admin/DashboardPage';
 import SignInPage from './pages/admin/SignInPage';
+import ProjectsPages from './pages/admin/Projects/ProjectsPages';
+import ProjectsNewPage from './pages/admin/Projects/ProjectsNewPage';
+import ProjectsEditPage from './pages/admin/Projects/ProjectsEditPage';
 
 // Laouts
 import AdminLayout from './layouts/AdminLayout';
@@ -52,14 +55,33 @@ const App =() => {
                     <ContactMePage/>
                 </MainLayout>
             )}/>
-
+            /** admin */
             <Route path = '/dashboard' render = { () => (
                 <AdminLayout>
                     <DashboardPage/>
                 </AdminLayout>
             )}/>
 
-            <Route path = '/management' render = { () => (
+            /** my projects */
+            <Route  exact path='/myprojects/' render = {() => (
+                <AdminLayout>
+                    <ProjectsPages/>
+                </AdminLayout>
+            )} />
+
+            <Route exact path='/myprojects-edit' render = {() => (
+                <AdminLayout>
+                    <ProjectsEditPage/>
+                </AdminLayout>
+            )} />
+
+            <Route path='/myprojects-add' render = {() => (
+                <AdminLayout>
+                    <ProjectsNewPage/>
+                </AdminLayout>
+            )} />
+
+            <Route path = '/management' render = {() => (
                 <GestLayout>
                     <ManagementPage/>
                 </GestLayout>

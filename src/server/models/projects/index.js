@@ -3,4 +3,4 @@ const projects = require('./projects');
 
 // export modules
 
-module.exports =projects;
+module.exports = projects;

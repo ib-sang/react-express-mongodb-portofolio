@@ -4,7 +4,7 @@ const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
 
-const CategoryProject = require('./../../models/category_projects');
+const CategoryProject = require('../../models/categories');
 
 router.get('/', (req, res, next) =>{
 
@@ -48,10 +48,8 @@ router.post('/', (req, res, next) =>{
     const category = new CategoryProject({
         _id : mongoose.Types.ObjectId(),
         name: name,
-        slug: slug(name)
     });
     category.save()
-    .exec()
     .then(result =>{
         console.log(result)
         res.status(201).json({

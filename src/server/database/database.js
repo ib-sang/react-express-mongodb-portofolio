@@ -27,8 +27,10 @@ database.connect = () =>{
     // if there was an error connecting to the database.
     return new Promise((resolve, reject) =>{
         mongoose.connect(
-            'mongodb+srv://'+db.user+':'+db.password+db.host+'/'+db.database+'?retryWrites=true&w=majority',
+            //'mongodb+srv://'+db.user+':'+db.password+db.host+'/'+db.database+'?retryWrites=true&w=majority',
+            'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false',
             { useNewUrlParser: true }
+
         )
         .then(()=>{
             resolve();

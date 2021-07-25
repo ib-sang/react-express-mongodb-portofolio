@@ -1,0 +1,73 @@
+.cart-admin {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 160px 1fr 80px;
+      grid-template-columns: 160px 1fr 80px;
+  grid-gap: space(1.5);
+  margin-bottom: space(2);
+  background: var(--colorTertiaire);
+  border-radius: space(1);
+}
+
+.cart-admin-head {
+  padding: space(1.5);
+}
+
+.cart-admin-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.cart-admin-body-f span {
+  padding-right: space(1);
+}
+
+.cart-admin-body-f span {
+  margin-right: space(1);
+}
+
+.cart-admin-status-a {
+  color: #52bd52;
+}
+
+.cart-admin-status-d {
+  color: #cf3838;
+}
+
+.cart-admin-show {
+  color: #747474;
+}
+
+.cart-admin-show svg {
+  width: 30px;
+}
+
+.cart-admin-like {
+  color: #747474;
+}
+
+.cart-admin-foot {
+  margin-left: auto;
+  padding-top: space(2);
+  cursor: pointer;
+}
+
+.cart-admin-foot svg {
+  height: 30px;
+  width: 30px;
+}
+
+.cart-admin-foot:hover {
+  color: var(--colorActive);
+}
+/*# sourceMappingURL=cartAdmin.css.map */

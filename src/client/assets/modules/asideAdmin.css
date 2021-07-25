@@ -1,0 +1,54 @@
+.aside-prifile {
+  border-radius: space(1);
+  background: var(--colorTertiaire);
+}
+
+.aside-head {
+  padding-top: space(2);
+}
+
+.aside-media {
+  background: #a4cada;
+  margin-bottom: space(2);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  overflow: hidden;
+}
+
+.aside-img {
+  -webkit-transform: translateX(20px) translateY(20px);
+          transform: translateX(20px) translateY(20px);
+}
+
+.aside-title {
+  font-weight: 600;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.aside-body {
+  margin-top: space(2);
+  margin-bottom: space(2);
+}
+
+.aside-item {
+  padding-top: space(0.5);
+  padding-bottom: space(0.5);
+  padding-left: space(2);
+  padding-right: space(2);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.aside-link {
+  display: block;
+}
+
+.aside-item:hover {
+  color: var(--colorActive);
+  background-color: #fff;
+}
+/*# sourceMappingURL=asideAdmin.css.map */

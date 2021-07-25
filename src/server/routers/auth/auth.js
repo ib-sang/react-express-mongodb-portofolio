@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const config =require('./../../config')
 const multer = require('multer');
 const {auth, guest} =require('./../../middlewares/auth');
 const c = require('../../config/constants');
@@ -71,35 +72,53 @@ router.get('/', (req, res, next) =>{
 // Sign in
 router.post('/signin', (req, res, next) => {
 
-    const {email, password} = req.body;
+    const {email, password, token} = req.body;
+    
+    // find by token
+    User.findByToken(token, function(err, user){
+        if(err) return  res.status(500).json({messageError:err});
+        if(user){ 
+            return res.status(400).json({
+                error :true,
+                message:"You are already logged in"
+            })
+        }else{
+            User.findOne({email:email})
+            .exec()
+            .then( user =>{
+                if(!user){
+                    return res.status(401).json({isAuth : false, message : ' Auth failed ,email not found'})
+                }
 
-    User.findOne({email: email})
-    .exec()
-    .then(user => {
-        console.log(user)
-        if(!user || user.matchesPassword((password))){
-            return res.status(401).json({ isAuth : false,message : "Incorrect email or password"})
+                user.comparepassword(password, (err,isMatch) => {
+                    if(!isMatch) return res.status(401).json({ isAuth : false,message : "password doesn't match"});
+                    user.generateToken((err, user) =>{
+                        if(err) return res.status(400).send(err);
+                        let id = user._id 
+                        console.log(id)
+                        res.cookie('auth',user.token).json({
+                            isAuth : true,
+                            id : id,
+                            email : user.email,
+                            auth: user.token
+                        });
+                        
+                    })
+                })
+            })
         }
-        logIn(req, user._id)
-        res.status(200).json({
-            isAuth : true,
-            id : user._id,
-            email : user.email
-        })
-
-    })
-    .catch(err =>{
-        console.log(err)
-        res.status(500).json({
-            error: err
-        })
-        
     })
 
 });
 
 // Sign up
-router.post('/signup', (req, res, next) =>{ 
+router.post('/register', (req, res, next) =>{ 
+    
+    const newUser = new User({
+                        _id: new mongoose.Types.ObjectId(),
+                        email: req.body.email,
+                        password: req.body.password,
+                    });
 
     User.findOne({email: req.body.email})
     .exec()
@@ -107,55 +126,71 @@ router.post('/signup', (req, res, next) =>{
         console.log(user)
         if(user){
             return res.status(409).json({auth : false, message :"email exits"})
-        }else{
-            bcrypt.hash(req.body.password, 10, (err, hash) =>{
-
-                if(err){
-
-                    console.log(err)
-                    return res.status(500).json({
+        }
+        newUser.save((err, doc) =>{
+            if (err) {
+                console.log(doc)
+                    return res.status(400).json({
+                        success: false,
                         error: err
                     })
 
-                }else{
-                    const user = new User({
-                        _id: new mongoose.Types.ObjectId(),
-                        email: req.body.email,
-                        password: hash,
-                    });
+            }
+            res.status(200).json({
+                succes:true,
+                user : doc
+            });
+        })
+        // else{
+        //     bcrypt.hash(req.body.password, 10, (err, hash) =>{
 
-                    user.save()
-                    .then(result =>{
-                        console.log(result)
-                        const id = result._id
-                        logIn(req, id)
-                        res.status(201).json({
-                            message: "Createc user successfull",
-                            createdUser: {
-                                _id: id,
-                                email: result.email,
-                                request:{
-                                    type: 'GET',
-                                    url: 'localhost:9000/api/auth/'+id
-                                }
-                            }
-                        })
-                    })
-                    .catch(err =>{
-                        console.log(err)
-                        res.status(500).json({
-                            error: err
-                        })
-                    })
-                }
+        //         if(err){
 
-            })
-        }
+        //             console.log('password error: '+err)
+        //             return res.status(500).json({
+        //                 error: err
+        //             })
+
+        //         }else{
+        //             const user = new User({
+        //                 _id: new mongoose.Types.ObjectId(),
+        //                 email: req.body.email,
+        //                 password: hash,
+        //             });
+
+        //             user.save()
+        //             .then(result =>{
+        //                 console.log(result)
+        //                 const id = result._id
+        //                 console.log(id)
+        //                 logIn(req, id)
+        //                 return res.status(201).json({
+        //                     message: "Createc user successfull",
+        //                     createdUser: {
+        //                         _id: id,
+        //                         email: result.email,
+        //                         request:{
+        //                             type: 'GET',
+        //                             url: 'localhost:9000/api/auth/'+id
+        //                         }
+        //                     }
+        //                 })
+        //             })
+        //             .catch(err =>{
+        //                 console.log("error post to database:"+err)
+        //                 return res.status(500).json({
+        //                     error: err
+        //                 })
+        //             })
+        //         }
+
+        //     })
+        // }
     })
 
 });
 
-// Current User
+// User by userID
 router.get('/:userID', (req, res, next) =>{
     // user dont token != 1
     const id = req.params.userID
@@ -192,11 +227,25 @@ router.get('/:userID', (req, res, next) =>{
 })
 
 //logout user
-router.post('/logout', auth, (req, res, next) =>{
+router.post('/logout', auth, function(req, res, next){
 
-    logOut(req, res)
-    res.status(200).json({ message: 'OK' })
+    req.user.deleteToken(req.token,(err,user)=>{
+        if(err) return res.status(400).send(err);
+        res.sendStatus(200);
+    });
 
+})
+
+// Current User
+
+router.get('/profile', auth, function(req, res){
+    res.json({
+        isAuth: true,
+        id: req.user._id,
+        email: req.user.email,
+        name: req.user.firstname + req.user.lastname
+        
+    })
 })
 
 

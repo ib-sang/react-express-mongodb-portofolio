@@ -4,13 +4,8 @@ const Schema = mongoose.Schema;
 
 const categoryProjectsSchema = Schema({
 
-    _id: mongoose.Schema.Types.ObjectId$,
+    _id: mongoose.Schema.Types.ObjectId,
     name: {
-        type: String,
-        trim: true,
-        require: true
-    },
-    slug:{
         type: String,
         trim: true,
         require: true
@@ -18,4 +13,4 @@ const categoryProjectsSchema = Schema({
     
 })
 
-module.exports = mongoose.model('category_projects', categoryProjectsSchema)
+module.exports = mongoose.model('categories', categoryProjectsSchema);

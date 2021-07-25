@@ -26,96 +26,95 @@ const usersSchema = Schema({
     token:{
         type: String
     },
-    // roles: {
-    //     type: [
-    //         {
-    //             type: String,
-    //             'enum': [
-    //                 c.ROLE_ADMIN,
-    //                 c.ROLE_USER,
-    //                 c.ROLE_GEST
-    //             ]
-    //         }
-    //     ],
-    //     default: [c.ROLE_USER]
-    // }
+    roles: {
+        type: [
+            {
+                type: String,
+                'enum': [
+                    c.ROLE_ADMIN,
+                    c.ROLE_USER,
+                    c.ROLE_GEST
+                ]
+            }
+        ],
+        default: [c.ROLE_USER]
+    }
 
 
 })
 
 // to signup a user
-// usersSchema.pre('save', (next) =>{
+usersSchema.pre('save', function(next){
 
-//     let user = this;
+    let user = this;
 
-//     console.log(this)
-//     bcrypt.genSalt(salt, (err, salt) =>{
+    if(user.isModified('password')){
+        bcrypt.genSalt(salt,function(err,salt){
+            if(err)return next(err);
 
-//         if(err) return next(err)
-//         bcrypt.hash(user.password, salt, (err, hash) =>{
-//             if(err) return next(err)
-//             user.password = hash;
-//             next()
-//         })
+            bcrypt.hash(user.password,salt,function(err,hash){
+                if(err) return next(err);
+                user.password=hash;
+                next();
+            })
 
-//     })
-
-// })
+        })
+    }
+    else{
+        next();
+    }
+})
 
 //to login
-usersSchema.methods.comparepassword = ( password, cb ) =>{
+usersSchema.methods.comparepassword = function(password, cb ){
 
-    bcrypt.compare(password, this.password, (err, isMath) =>{
-        if(err) return cb(err)
-        cb(null, isMath)
+    bcrypt.compare(password, this.password, function(err, isMatch){
+        if(err) return cb(next)
+        cb(null, isMatch)
     })
 
 }
 
-// // generate token
-// usersSchema.methods.generateToken = (cb) =>{
+// generate token
+usersSchema.methods.generateToken = function(cb){
 
-//     let user = this;
-//     let token = jwt.sign(user._id.toHexString(),config.secret);
-//     user.token = token;
-//     user.save((err, user) =>{
-//         if(err) return cb(err)
-//         cb(null,user)
-//     })
+    let user = this
 
-// }
+    let token = jwt.sign(user._id.toHexString(),config.secret);
+    user.token = token;
+    
+    user.save((err, user) =>{
+        console.log(err)
+        if(err) return cb(err)
+        cb(null,user)
+    })
 
-// // find by token
-// usersSchema.statics.findByToken = (token, cb)=>{
+}
 
-//     let user = this
+// find by token
+usersSchema.statics.findByToken = function(token, cb){
 
-//     jwt.verify(token, config.secret, (err, decode) =>{
-//         user.findOne({"_id": decode, "token":token}, (err, user)=>{
-//             if(err) return cb(err)
-//             cb(user)
-//         })
-//     })
+    let user = this;
 
-// }
+    jwt.verify(token, config.secret, function(err, decode){
+        user.findOne({"_id": decode, "token":token}, function(err, user){
+            if(err) return cb(err)
+            cb(null, user)
+        })
+    })
+
+}
 
 //delete token
 usersSchema.methods.deleteToken = (token, cb)=>{
 
-    let user = this
+    var user=this;
 
-    user.updateOne({$unset : {token :1}},(err, user)=>{
+    user.updateOne({$unset : {token :1}},function(err,user){
         if(err) return cb(err);
-        cb(null, user);
+        cb(null,user);
     })
 
 }
-
-usersSchema.methods.matchesPassword = (password)=> {
-    console.log(this.password)
-    return bcrypt.compare(password, this.password)
-}
-  
-
 
 module.exports = mongoose.model('User', usersSchema);

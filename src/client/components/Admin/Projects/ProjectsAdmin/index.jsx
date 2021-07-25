@@ -1,6 +1,6 @@
 import React from 'react'
-import { Fragment } from 'react';
-import CartAdmin from './../CartAdmin';
+import CartAdmin from './../../CartAdmin';
+import Icon from './../../../Icon';
 
 const ProjectsAdmin = () => {
     const projects = [
@@ -41,7 +41,7 @@ const ProjectsAdmin = () => {
     return (
         <div className='project-admin'>
             <div className="cart-add">
-                <a href="">Submit new project</a>
+                <a href="/myprojects-add"><Icon name='plus' />Submit new project</a>
             </div>
             {AllCart &&(AllCart)}
         </div>  

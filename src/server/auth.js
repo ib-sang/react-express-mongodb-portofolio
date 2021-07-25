@@ -2,8 +2,17 @@ const {config} = require('./config')
 
 const isLoggedIn = req => !!req.session.userId
 
-const logIn = (req, userID) =>{
-    req.session.userId = userId
+const logIn = (req, user) =>{
+    let token=req.cookies.auth;
+
+    user.findByToken(token, (err, user) =>{
+        if(err) return err
+        if(user){
+            return user
+        }
+    })
+    console.log(token)
+    req.session.userId = userID
     req.session.createdAt = Date.now()
 }
 

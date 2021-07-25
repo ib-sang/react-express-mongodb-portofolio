@@ -1,8 +1,10 @@
-import React from 'react';
-import ProjectsAdmin from './../ProjectsAdmin';
+import React, {Fragment} from 'react';
 
-const ContentAdmin = () => {
-    return <ProjectsAdmin/>
+
+const ContentAdmin = ({children}) => {
+    return <Fragment>
+        {children && children}
+    </Fragment>
 }
 
 export default ContentAdmin

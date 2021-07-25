@@ -7,6 +7,8 @@
 
 // Routes
 const authRouters = require('./../routers/auth'); 
+const projectRouters = require('./../routers/projects');
+const categoryRouters = require('../routers/categories');
 
 /**
  * Route Handler
@@ -19,7 +21,9 @@ const authRouters = require('./../routers/auth');
 const routes = app =>{
    
     // routes account
-    app.use('/api/auth', authRouters);
+    app.use('/api/auth', authRouters)
+    app.use('/api/projects', projectRouters)
+    app.use('/api/categories', categoryRouters)
 
 } 
 

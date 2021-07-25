@@ -1,6 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const AsideAdmin = () => {
+
+    const {pathname} = useLocation();
+
+
+    const isSubPath = ($subpath) =>{
+        return pathname.indexOf($subpath) !==-1
+    }
+
     return (
         <div className='aside-prifile'>
             <div className="aside-head">
@@ -11,11 +20,11 @@ const AsideAdmin = () => {
             </div>
             <div className="aside-body">
                 <ul className='aside-items'>
-                    <li className='aside-item'><a href="" className='aside-link'>Overviews</a></li>
-                    <li className='aside-item'><a href="" className='aside-link'>Settings</a></li>
-                    <li className='aside-item'><a href="" className='aside-link'>Projects</a></li>
-                    <li className='aside-item'><a href="" className='aside-link'>Billings</a></li>
-                    <li className='aside-item'><a href="" className='aside-link'>Messages</a></li>
+                    <li className='aside-item'><a href="" className={isSubPath('dashboard') ? 'active aside-link': 'aside-link'}>Overviews</a></li>
+                    <li className='aside-item'><a href="" className={isSubPath('setting') ? 'active aside-link': 'aside-link'}>Settings</a></li>
+                    <li className='aside-item'><a href="/myprojects" className={isSubPath('myprojects') ? 'active aside-link': 'aside-link'}>Projects</a></li>
+                    <li className='aside-item'><a href="" className={isSubPath('billings') ? 'active aside-link': 'aside-link'}>Billings</a></li>
+                    <li className='aside-item'><a href="" className={isSubPath('messages') ? 'active aside-link': 'aside-link'}>Messages</a></li>
                 </ul>
             </div>
         </div>

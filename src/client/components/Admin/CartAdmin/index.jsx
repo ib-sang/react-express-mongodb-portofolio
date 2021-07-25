@@ -1,4 +1,5 @@
 import React from 'react'
+import Icon from './../../Icon';
 
 const CartAdmin = ({cart}) => {
     const img = './img/'+ cart.image;
@@ -13,13 +14,13 @@ const CartAdmin = ({cart}) => {
                 </div>
                 <h1>Devop, Automate and Provisionning ...</h1>
                 <div className="cart-admin-body-f">
-                    <span className='cart-admin-status'>Active</span>
-                    <span className='cart-admin-show'>623</span>
-                    <span className='cart-admin-like'>74</span>
+                    <span className='cart-admin-status-a'><Icon name='tick' /> Active</span>
+                    <span className='cart-admin-show'><Icon name='open-eye' /> 623</span>
+                    <span className='cart-admin-like'><Icon name='heart' /> 74</span>
                 </div>
             </div>
             <div className="cart-admin-foot">
-
+                <Icon name='menu-admin' />
             </div>
         </div>
     )
